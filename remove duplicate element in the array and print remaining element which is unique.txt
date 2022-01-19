@@ -1,0 +1,57 @@
+Problem
+You are given an array of integers. The special property of the array is that exactly two different elements occur once while other elements occur twice.
+
+You are required to determine those two elements.
+
+Input format
+
+First line: Integer  denoting the number of elements in the array
+Second line:  space-separated integers denoting the values in the array
+Output format
+
+Print two space-separated integers that occur once in the array in ascending order.
+
+Constraints
+
+
+, where  denotes the  element in the array
+
+Sample Input
+8
+1 2 3 4 5 5 3 4
+Sample Output
+1 2
+
+
+
+
+Solution
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    int res[1000];
+    int curr = 0;
+
+    for(int i= 0 ; i < n ; i++)
+    {
+        cin >> arr[i];
+    }   
+
+    for(int i = 0 ; i < n; i++)
+    {
+        if(arr[i] != arr[i+1] && arr[i] != arr[i-1])
+        {
+            res[curr] = arr[i];
+            curr++;
+        }
+    }
+
+    sort(res,res+2);
+    cout << res[0] << " " << res[1];
+
+}
