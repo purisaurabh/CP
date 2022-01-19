@@ -1,0 +1,120 @@
+FIRST PROBBLEM 
+
+
+Given a positive integer n, find the nth fibonacci number. Since the answer can be very large, return the answer modulo 1000000007.
+
+Example 1:
+
+Input: n = 2
+Output: 1 
+Explanation: 1 is the 2nd number
+of fibonacci series.
+Example 2:
+
+Input: n = 5
+Output: 5
+Explanation: 5 is the 5th number
+of fibonacci series.
+
+Your Task:  
+You dont need to read input or print anything. Complete the function nthFibonacci() which takes n as input parameter and returns nth fibonacci number.
+
+Expected Time Complexity: O(n)
+Expected Auxiliary Space: O(n)
+
+Constraints:
+1<= n <=1000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+  public:
+    const long long mod = 1e9+7;
+    long long int nthFibonacci(long long int n) {
+        //prestoring
+        long long int dp[n+5];
+        //initializing dp[0] as 0
+        dp[0]=0;
+        //initializing dp[1] as 1
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            //as same as fibonacci formula f(i)=f(i-1)+f(i-2)
+            dp[i]=(dp[i-1]%mod + dp[i-2]%mod)%mod;
+        }
+        //returning nth value
+        return dp[n];
+    }
+};
+
+
+
+
+
+
+
+
+
+SECOND PROBLEM 
+
+
+Given a number N, find the first N Fibonacci numbers. The first two number of the series are 1 and 1.
+
+Example 1:
+
+Input:
+N = 5
+Output: 1 1 2 3 5
+Example 2:
+
+Input:
+N = 7
+Output: 1 1 2 3 5 8 13
+Your Task:
+Your task is to complete printFibb() which takes single argument N and returns a list of first N Fibonacci numbers.
+
+Expected Time Complexity: O(N).
+Expected Auxiliary Space: O(N).
+Note: This space is used to store and return the answer for printing purpose.
+
+Constraints:
+1<= N <=84
+
+ 
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n3; 
+    int n1 = 1 , n2 = 1 ;
+    int n ;
+    cout << "Enterr a number grether than 1 : " << endl;
+    cin >> n;
+    cout << n1 << " " << n2  << " ";
+    for (int i = 2; i < n; i++)
+    {
+        n3 = n1 + n2;
+        cout << n3 << " ";
+        n1 = n2 ;
+        n2 = n3 ;
+
+    }
+    
+}

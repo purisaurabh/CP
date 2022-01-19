@@ -1,0 +1,88 @@
+Problem
+Sherlock is investigating that who was responsible for the massacre at the British embassy in Tbilisi.
+AMMO codeword signifies something. What can be its meaning?
+
+Sherlock is suspecting some people , and each of them has some jealousy coefficient.
+Consider yourself to be Dr.Watson. You need to arrange these names in decreasing order of jealousy.
+
+If two or more people have same jealousy coefficient , they must be arranged in lexicographical order.
+
+Input
+On the first line, you are provided the value N - the number of people Sherlock suspects.
+N lines follow.
+Each of these N lines comprises a string S and an integer X, signifying the name and the associated jealousy coefficient respectively.
+
+Output
+Print the N lines in the order specified above.
+
+Constraints
+1<=N<=100000
+1<=X<=1000
+1<=|S|<=100
+
+Sample Input
+3
+
+Smallwood 3
+Vivian 5
+Norbury 5
+
+Sample Output
+
+Norbury 5
+Vivian 5
+Smallwood 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool cmp(pair<string,int>a , pair<string,int>b)
+{
+    if(a.second == b.second)
+    {
+        return a.first < b.first;
+    }
+
+    return a.second > b.second;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    vector<pair<string,int>>v;
+    while(t--)
+    {
+        string s;
+        int n;
+        cin >> s >> n;
+        v.push_back({s,n});
+    }
+
+    sort(v.begin() , v.end(), cmp);
+
+    for(int i = 0 ; i <v.size(); i++)
+    {
+        cout << v[i].first << " " << v[i].second << endl;
+    }
+
+}

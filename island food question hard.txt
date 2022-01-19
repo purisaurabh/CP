@@ -1,0 +1,111 @@
+Luffy needs to reach grandline ASAP. Lufi's ship is K Kilometers far from Grandline . But luffy consumse 1 unit of food for every kilometer the ship covers and luffy can never be hungry until he reaches grandline. There are N islands between ship's current position and grandline. ithIsland is Di distance apart from grandline and has Ai amount of food. Luffy curently has F amount of food. You need to tell minimum number of islands luffy needs to stop at so that he never is hungary before reaching grandline.
+
+If its not possible to reach grandline without luffy being hungary, then print -1
+
+ 
+
+Input
+
+The first line of the input contains a single integer T denoting the number of test cases. The first line of each test case contains a single integer N denoting number of islands. The second line of each test case contains two integers K and F denoting the initial distance of ship from grandline and amount of food ship has initially. Next N lines contain two space separated integers Di and Ai denoting the distance of the island from Grandline and the amount of food in island. Ship can take all the food from any island.
+
+Output
+
+For each test case print the minimum number of stops required to reach grandline. If he cannot reach home print "-1".
+
+Constraints
+
+1 ≤  T ≤ 10
+
+1≤  N ≤ 104
+
+1 ≤  D ≤ K ≤ 106
+
+1 ≤  A, F  ≤ 106
+
+Sample Input
+2
+4
+25 10
+20 5
+10 10
+22 2
+23 4
+5
+25 7
+12 4
+11 3
+3 4
+17 4
+2 19
+Sample Output
+2
+-1
+
+
+
+
+
+Solution
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    for (int i=0; i<t; i++)
+    {
+        int islands;
+        cin >> islands;
+        vector<pair<int, int>>data(islands);
+        int dist, food;
+        cin >> dist >> food;
+
+        for (int j=0; j<islands; j++)
+        {
+            cin >> data[j].first >> data[j].second;
+            data[j].first = dist-data[j].first;
+        }
+
+        sort(data.begin(), data.end());
+        multiset<int> food_avl;
+        int cur=0, ans=0;
+        bool can_reach = true;
+
+        for (int i=1; i< dist; i++)
+        {
+            food--;
+            if (data[cur].first==i)
+                food_avl.insert(data[cur++].second);
+
+            if (food==0)
+            {
+                if (food_avl.empty())
+                {
+                    can_reach=false;
+                    break;
+                }
+                else
+                {
+                    auto it=--(food_avl.end());
+                    food+= (*it);
+                    ans++;
+                    food_avl.erase(it);
+                }
+
+            }
+
+        }
+
+        if (can_reach == false)
+            cout<< -1 <<endl;
+
+        else
+            cout<< ans <<endl;
+
+    }
+
+}
+

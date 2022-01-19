@@ -1,0 +1,76 @@
+You are given N points in xy-plane. Determine the difference between maximum and minimum areas of rectangle formed from these points, with sides parallel to X and Y axes. In case no rectangle can be formed, print -1.
+
+Note, that the points used in one rectangle, may be used in another rectangle. Also, it is guaranteed that that N points don't have any duplicates. Refer test cases for further explanation.
+
+Constraints:
+
+1 <= N <= 1000
+
+0 <= x,y for each point <= 45000
+
+Input Format:
+
+First line contains N value.
+
+Next N lines contain 2 space separated integers - "x y"
+
+Output Format:
+
+One line containing the difference or -1, which ever applicable.
+
+Sample Input
+6
+10 0
+0 10
+10 2
+0 0
+0 2
+10 10
+Sample Output
+80
+
+
+
+
+Solution
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    vector<pair<int, int>> points(n);
+    set<pair<int, int>> points_st;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> points[i].first >> points[i].second;
+        points_st.insert(points[i]);
+    }
+
+    int arr_max = INT_MIN, arr_min = INT_MAX;
+    
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (points[i].first == points[j].first || points[i].second == points[j].second)
+                continue;
+
+            pair<int, int> pt3 = {points[i].first, points[j].second};
+            pair<int, int> pt4 = {points[j].first, points[i].second};
+            if (points_st.count(pt3) && points_st.count(pt4))
+            {
+                int area = abs((points[j].first - points[i].first) * (points[j].second - points[i].second));
+                arr_min = min(area, arr_min);
+                arr_max = max(area, arr_max);
+            }
+        }
+    }
+    if (arr_max == INT_MIN)
+        cout << -1 << endl;
+
+    else
+        cout << arr_max - arr_min<< endl;
+
+    return 0;
+}

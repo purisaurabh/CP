@@ -1,0 +1,35 @@
+// Subsequence of string 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void getSubsequence(string str , int strindex , string output)
+{
+    if(strindex == str.length())
+    {
+        cout << output << endl;
+        return ;
+    }
+
+    getSubsequence(str , strindex+1 , output);  
+
+    output.push_back(str[strindex]);
+    getSubsequence(str , strindex+1 , output);
+
+}
+
+int main()
+{
+    string str;
+    cout << "Enter a string :" << endl;
+    cin >> str;
+    cout << "Printing all the subsequence : " << endl;
+    string output = " " ;
+    getSubsequence(str , 0 , output);
+
+}
+
+
+
+
+

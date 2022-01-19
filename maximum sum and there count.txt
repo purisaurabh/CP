@@ -1,0 +1,67 @@
+Problem
+You are given an array of integers , you need to find the maximum sum that can be obtained by picking some non-empty subset of the array. If there are many such non-empty subsets, choose the one with the maximum number of elements. Print the maximum sum and the number of elements in the chosen subset.
+
+Input:
+
+The first line contains an integer , denoting the number of elements of the array. Next line contains  space-separated integers, denoting the elements of the array.
+
+Output:
+
+Print  space-separated integers, the maximum sum that can be obtained by choosing some subset and the maximum number of elements among all such subsets which have the same maximum sum.
+
+Constraints:
+
+Sample Input
+5
+1 2 -4 -2 3
+Sample Output
+6 3
+Time Limit: 1
+Memory Limit: 256
+Source Limit:
+Explanation
+The chosen subset is {1, 2, 3}.
+
+
+
+Solution:
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+
+    long long int n, sum = 0, count = 0;
+    cin >> n;
+    vector <int> v;
+    
+    for(int i = 0 ; i < n ;i++)
+    {
+        int x;
+        cin >> x;
+        v.push_back(x);
+    }
+
+    sort(v.begin(), v.end());
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (v[i] >= 0)
+        {
+            sum += v[i];
+            count++;
+        }
+
+        else
+        {
+            break;
+        }
+    }
+
+    if (count)
+        cout << sum << " " << count << "\n";
+
+    else
+        cout << v[n - 1] << " 1";
+
+}

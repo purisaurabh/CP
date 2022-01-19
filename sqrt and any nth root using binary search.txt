@@ -1,0 +1,84 @@
+
+/*
+#include <bits/stdc++.h>
+using namespace std;
+double esp = 1e-7;
+int main()
+{
+    double x;
+    cout << "Enter a number which you want to find squere root of that number : " << endl;
+    cin >> x;
+    double low = 1;
+    double high = x;
+    double mid;
+    while(high - low > esp)
+    {
+        mid = (high+low)/2;
+        if((mid*mid)  < x)    // this mid*mid denote for square root 
+        {
+            low = mid;
+        }
+
+        else
+        {
+            high = mid;
+        }
+    }
+
+    cout << "The square root of " << x << " is " <<  high << endl;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+// if we have to find the nth root of any number so above programe is use; 
+#include <bits/stdc++.h>
+using namespace std;
+double esp = 1e-7;
+
+double multiply(double mid , int n)
+{
+    double ans = 1;
+    for(int i = 0 ; i < n ; i++)
+    {
+        ans *= mid;
+    }
+    return ans;
+}
+int main()
+{
+    double x;
+    cout << "Enter a number which you want to find root of that number : " << endl;
+    cin >> x;
+    int n;
+    cout << "Enter the power of given numebr : " << endl;
+    cin >> n;
+    double low = 1;
+    double high = x;
+    double mid;
+    while(high - low > esp)
+    {
+        mid = (high+low)/2;
+        if((multiply(mid,n)) < x)    // this mid*mid denote for square root 
+        {
+            low = mid;
+        }
+
+        else
+        {
+            high = mid;
+        }
+    }
+
+    cout << "The "<< n <<" th root of " << x << " is " <<  high << endl;
+}
+
+// Time complexity p*log(N*(10^d))
+

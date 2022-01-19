@@ -1,0 +1,55 @@
+A round-robin tournament is being held in Chefland among N teams numbered 1,2,...,N. Every team play with all other teams exactly once. All games have only two possible results - win or loss. A win yields 2 points to the winning team while a loss yields no points. What is the maximum number of points a team finishing at the Kth position can score?
+
+Note: If two teams have the same points then the team with the higher team number achieves the better rank.
+
+Input Format
+First line will contain T, number of testcases. Then the testcases follow.
+Each testcase contains a single line of input, two space-separated integers N,K.
+Output Format
+For each testcase, output in a single line an integer - the maximum points the team ranked K in the round-robin tournament can score.
+
+Constraints
+1≤T≤105
+1≤K≤N≤109
+Sample Input 1 
+3
+3 3
+4 1
+7 4
+Sample Output 1 
+2
+6
+8
+Explanation
+Test Case 1: There are 3 teams in the tournament. The maximum score will be achieved by the team coming 3rd when all teams win 1 match and lose the other one. Hence the maximum possible score will be 2(2⋅1) points.
+
+Test Case 2: There are 4 teams in the tournament. The maximum score will be achieved by the team coming 1st when they beat all teams in the tournament. Hence the maximum possible score will be 6(2⋅3) points.
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+	// your code goes here
+	long long t;
+	cin >> t;
+	while(t--)
+	{
+	    long long n , k;
+	    cin >> n >> k;
+	    int ct = (2*n-k-1)/2;
+	    cout << ct*2 << endl;
+	}
+	
+}

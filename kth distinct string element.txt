@@ -1,0 +1,56 @@
+
+
+
+
+
+Given an array of strings arr, and an integer k, return the kth distinct string present in arr. If there are fewer than k distinct strings, return an empty string "".
+
+Note that the strings are considered in the order in which they appear in the array.
+
+ 
+
+Example 1:
+
+Input: arr = ["d","b","c","b","c","a"], k = 2
+Output: "a"
+Explanation:
+The only distinct strings in arr are "d" and "a".
+"d" appears 1st, so it is the 1st distinct string.
+"a" appears 2nd, so it is the 2nd distinct string.
+Since k == 2, "a" is returned. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    string kthDistinct(vector<string>& arr, int k) {
+        map <string,int> save;
+//save each element of array in map (so I know which one is a distinct string and which one not) 
+        for (auto s : arr)save[s]++;
+        
+        for (auto s : arr){
+		//start from the first element of array we check if it is a distinct string, if so k--
+		//so we can get kth disitinct string
+            if (save[s] == 1)k--;
+            
+			//when k = 0 means that we find the kth disitinct string
+            if (k == 0)return s;
+        }
+        //if the loop is finished and we didn't returned anything (so means that k != 0) means that there are fewer than k distinct strings
+        return "";
+    }
+};
